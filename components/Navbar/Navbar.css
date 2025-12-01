@@ -1,0 +1,32 @@
+.navbar {
+  background: #222a3a;
+  border-bottom: 1px;
+  border-color: #333b4d;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.navbar-heading {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: #dc2828;
+}
+
+.navbar-links,
+.same {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  color: #a6a6a6;
+}
+
+.navbar-links .same:hover {
+  color: hsl(0 0% 95%);
+}

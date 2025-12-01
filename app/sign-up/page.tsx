@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import Login from "../components/login/Login";
+import Signup from "../../components/login/Signup";
 function page() {
   return (
     <div>
-      <Login />
+      <Signup />
     </div>
   );
 }

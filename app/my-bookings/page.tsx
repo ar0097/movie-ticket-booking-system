@@ -1,10 +1,11 @@
 "use client";
+import Booked from "@/components/bookings/Booked";
 import React from "react";
-import Login from "../components/login/Login";
+
 function page() {
   return (
     <div>
-      <Login />
+      <Booked />
     </div>
   );
 }
