@@ -1,5 +1,6 @@
 "use client";
 import Mybookings from "@/components/bookings/Mybookings";
+import ProtectedRoute from "@/components/ProtectedRoute";
 import React, { use } from "react";
 
 interface PageProps {
@@ -12,7 +13,9 @@ function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   return (
     <div>
-      <Mybookings id={id} />
+      <ProtectedRoute>
+        <Mybookings id={id} />
+      </ProtectedRoute>
     </div>
   );
 }

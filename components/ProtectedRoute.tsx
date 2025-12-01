@@ -1,14 +1,22 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
+"use client";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
-const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
+interface ProtectRoutes {
+  children: React.ReactNode;
+}
 
-  if (!token) {
-    return <Navigate to="/" replace />;
-  }
+const ProtectedRoute = ({ children }: ProtectRoutes) => {
+  const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  return children;
+    if (!token) {
+      return router.replace("/");
+    }
+  }, [router]);
+
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
