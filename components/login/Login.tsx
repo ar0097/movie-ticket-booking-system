@@ -4,17 +4,25 @@ import { loginUser } from "../../api";
 import "./Login.css";
 import { useRouter } from "next/navigation";
 
+interface LoginTypes {
+  email: string;
+  password: string;
+}
+
 const Login = () => {
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState<LoginTypes>({
+    email: "",
+    password: "",
+  });
   const [message, setMessage] = useState("");
   // const navigate = useNavigate();
   const router = useRouter();
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: string; value: string } }) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const data = await loginUser(form);
     if (data.token) {
