@@ -53,7 +53,6 @@ function Mybookings({ id }: PropsTypes) {
   const [modal, setModal] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>("");
   const [message, setMessage] = useState<string>("");
-  console.log("userName", getData);
 
   useEffect(() => {
     const name = JSON.parse(localStorage.getItem("user") as string) as string;
@@ -84,8 +83,13 @@ function Mybookings({ id }: PropsTypes) {
     getMoviesById(id).then((data) => setMovie(data));
   }, [id]);
 
+  const bookedSeatsData = async () => {
+    const data = await bookedSeats();
+    setBooked(data);
+  };
+
   useEffect(() => {
-    bookedSeats().then((data) => setBooked(data));
+    bookedSeatsData();
   }, []);
 
   const handleSeats = (row: string, num: number) => {
@@ -98,7 +102,7 @@ function Mybookings({ id }: PropsTypes) {
     }
   };
 
-  const confirmBooking = () => {
+  const confirmBooking = async () => {
     const month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const data = {
       movieName: movie.title,
@@ -112,10 +116,11 @@ function Mybookings({ id }: PropsTypes) {
       seats: [...selectedSeats],
       price: price,
     };
-    bookSeats(data).then((data) => console.log("data sent", data));
+    await bookSeats(data).then((data) => console.log("data sent", data));
     setModal(false);
     setMessage("Booked");
     setSelectedSeats([]);
+    await bookedSeatsData();
   };
 
   const handleModal = () => {
