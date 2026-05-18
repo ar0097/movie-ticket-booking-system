@@ -1,4 +1,4 @@
-const API_URL = "https://movies-backend-hazel.vercel.app/api";
+const API_URL = "https://movies-api-seven-orcin.vercel.app/api";
 
 export const signupUser = async (data) => {
   const res = await fetch(`${API_URL}/auth/signup`, {
@@ -29,7 +29,7 @@ export const getMoviesById = async (id) => {
 }
 
 export const bookSeats = async (data) => {
-  const res = await fetch(`${API_URL}/bookings/create`, {
+  const res = await fetch(`${API_URL}/bookings`, {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
